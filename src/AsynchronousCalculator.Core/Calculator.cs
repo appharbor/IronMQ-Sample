@@ -44,8 +44,12 @@ namespace AsynchronousCalculator.Core
 		private string DequeueMessage(string queueName)
 		{
 			var message = _client.queue(queueName).get();
-			_client.queue(queueName).deleteMessage(message);
-			return message.Body;
+			if (message != null)
+			{
+				_client.queue(queueName).deleteMessage(message);
+				return message.Body;
+			}
+			return null;
 		}
 	}
 }
