@@ -28,17 +28,24 @@ namespace AsynchronousCalculator.Core
 
 		public string DequeueOperation()
 		{
-			return _client.queue("operations").get().Body;
+			return DequeueMessage("operations");
 		}
 
 		public void EnqueueResult(string message)
 		{
-			_client.queue("operations").push(message);
+			_client.queue("results").push(message);
 		}
 
 		public string GetLastResult()
 		{
-			return _client.queue("operations").get().Body;
+			return DequeueMessage("results");
+		}
+
+		private string DequeueMessage(string queueName)
+		{
+			var message = _client.queue(queueName).get();
+			_client.queue(queueName).deleteMessage(message);
+			return message.Body;
 		}
 	}
 }
