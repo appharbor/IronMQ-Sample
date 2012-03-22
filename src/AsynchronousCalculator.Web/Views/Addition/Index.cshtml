@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>Previous result: @Model</p>
+
+@using (Html.BeginForm("Create", "Addition", FormMethod.Post))
+{
+	<p>Numbers</p>
+	@Html.TextBox("x")
+	@Html.TextBox("y")
+	<input type="submit" />
+}
+
