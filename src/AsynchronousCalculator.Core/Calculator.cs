@@ -15,8 +15,8 @@ namespace AsynchronousCalculator.Core
 				e.SetObserved();
 			};
 
-			var _projectId = ConfigurationManager.AppSettings["IRONIO_PROJECT_ID"];
-			var _token = ConfigurationManager.AppSettings["IRONIO_TOKEN"];
+			var _projectId = ConfigurationManager.AppSettings["IRON_MQ_TOKEN"];
+			var _token = ConfigurationManager.AppSettings["IRON_MQ_PROJECT_ID"];
 
 			_client = new Client(_projectId, _token);
 		}
